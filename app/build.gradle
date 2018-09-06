@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.valour.dagger2setup"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+
+    // Instrumentation tests
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.1.0-alpha4"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.0-alpha4"
+    androidTestImplementation "androidx.test:runner:1.1.0-alpha4"
+    androidTestImplementation "androidx.test:rules:1.1.0-alpha4"
+
+    //Google - OLD
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:support-v4:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:support-compat:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:support-core-utils:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:support-core-ui:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:support-fragment:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:appcompat-v7:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:design:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:customtabs:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:cardview-v7:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:recyclerview-v7:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:support-annotations:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:animated-vector-drawable:$SUPPORT_PACKAGE_VERSION"
+    implementation "com.android.support:exifinterface:$SUPPORT_PACKAGE_VERSION"
+
+    // Architecture Components -------------------------------------------------------
+    implementation "android.arch.lifecycle:extensions:$LIFE_CYCLE_VERSION"// ViewModel and LiveData
+    implementation "android.arch.lifecycle:runtime:$LIFE_CYCLE_VERSION"
+    implementation "android.arch.lifecycle:common-java8:$LIFE_CYCLE_VERSION"
+    implementation "android.arch.persistence.room:runtime:$ROOM_VERSION"
+    kapt "android.arch.persistence.room:compiler:$ROOM_VERSION"
+
+    //--------------------------------------------------------------------------------
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION"
+
+    // Multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // Dagger2
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    implementation "com.google.dagger:dagger-android:$DAGGER_VERSION"
+    implementation "com.google.dagger:dagger-android-support:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-android-processor:$DAGGER_VERSION"
+
+
+}
